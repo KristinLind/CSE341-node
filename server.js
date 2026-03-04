@@ -18,15 +18,16 @@ const __dirname = path.dirname(__filename);
 // Serve static files from public folder
 app.use(express.static(path.join(__dirname, "public")));
 
+// Allow JSON in requests (keep this)
 app.use(express.json());
 
 // Routes
 app.use("/professional", contactsRoutes);
 
-// Connect to Mongo
+// Connect to MongoDB
 await connectDB();
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
