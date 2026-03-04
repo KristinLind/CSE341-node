@@ -1,15 +1,32 @@
-import express from "express";
 import dotenv from "dotenv";
-
 dotenv.config();
+
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+
+import contactsRoutes from "./routes/contacts.js";
+import { connectDB } from "./database.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-  res.send("CSE 341 API running");
-});
+// Needed for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+// Serve static files from public folder
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use(express.json());
+
+// Routes
+app.use("/professional", contactsRoutes);
+
+// Connect to Mongo
+await connectDB();
+
+// Start server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
