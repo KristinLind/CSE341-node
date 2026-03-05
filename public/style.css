@@ -119,7 +119,8 @@ body {
 }
 
 #professionalName {
-    font-size: 2.8rem;
+    font-size: clamp(28px, 6vw, 48px);
+    text-align: center;
     font-weight: 600;
     letter-spacing: 2px;
     margin-bottom: 1rem;
@@ -129,15 +130,17 @@ body {
 .name-card {
     position: relative;
     left: -250px;
+    max-width: 90%;
+    margin: auto;
     display: inline-block;
-    padding: 1.5rem 1.5rem;
+    padding: 20px 30px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 18px;
     background: rgb(210, 216, 214);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     box-shadow: 0 8px 25px rgba(12, 0, 0, 0.648);
-    margin-bottom: 2rem;
+    margin-bottom: 20px;
     margin-top: 2rem;
 }
 
@@ -146,12 +149,34 @@ body {
     backdrop-filter: blur(12px);
     padding: 35px 35px;
     border-radius: 16px;
-    width: 380px;
+    width: 360px;
+    max-width: 90%;
+    box-sizing: border-box;
+    text-align: center;
     margin-top: 75px;
     font-size: 1.4rem;
     border:1px solid rgba(255,255,255,0.35);
     box-shadow: 0 18px 40px rgba(12, 0, 0, 0.685);
     color: #264d4d;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.info-card p {
+    font-size: clamp(16px, 2.5vw, 20px);
+    margin: 12px 0;
+    line-height: 1.4;
+}
+
+.info-card strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.info-card a {
+    display: inline-block;
+    margin-top: 8px;
+    font-weight: 600;
 }
 
 .name-card:hover,
@@ -183,11 +208,10 @@ body {
 /* PYRAMID CODE */
 .stage {
     position: absolute;
-    margin-top: 5px;
     top: 100px;
-    right: -55px;
+    right: -35px;
     transform: scale(0.85);
-    margin-left: 40px;
+    margin-left: 35px;
     width: 350px;
     height: 350px;
     perspective: 1200px;
@@ -259,6 +283,7 @@ body {
     border-color: rgba(0, 255, 255, 0.795) transparent transparent transparent;
 }
 
+/* Pyramid animation */
 @-webkit-keyframes turnPyramid {
     100% {
         -webkit-transform: rotateX(75deg) rotate(425deg);
@@ -271,58 +296,26 @@ body {
     }
 }
 
-@media (max-width: 300px) {
-    html {
-        font-size: 70%;
-    }
+/* Mobile layout */
+@media (max-width: 768px) {
 
-    .stage {
-        -webkit-transform: scale(0.05);
-        transform: scale(0.05);
-    }
-}
-
-@media (max-width: 440px) {
-    h1 {
-        line-height: 55px;
-    }
-}
-
-@media (max-width: 460px) {
-    .stage {
-        position: absolute;
-        top: 25px;
-        left: 50%;
-        margin-left: -45px;
-    }
-
-    h1 {
-        margin-top: 50px;
-        text-align: center;
-    }
-}
-
-@media (max-width: 700px) {
-
-    #professionalImage {
-        width: 180px;
-    }
-
-    .flex-container {
+    .main-layout {
         flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        padding: 20px;
+    }
+
+    .profile-section {
         align-items: center;
         text-align: center;
     }
 
-    .flex-child {
-        margin-bottom: 1rem;
-    }
-
 }
 
+/* Pyramid scaling */
 @media (max-width: 600px) {
     .stage {
-        -webkit-transform: scale(0.55);
         transform: scale(0.55);
     }
 }
@@ -333,7 +326,6 @@ body {
     }
 
     .stage {
-        -webkit-transform: scale(0.68);
         transform: scale(0.68);
     }
 }
@@ -343,29 +335,12 @@ body {
         font-size: 120%;
     }
 
-    p,
-    li {
-        font-size: 1em;
-    }
-
-    p#pright {
-        margin-left: 3em;
-    }
-
     .stage {
-        -webkit-transform: scale(0.85);
         transform: scale(0.85);
     }
 }
 
-@media screen and (max-width: 880px) {
-
-    .flex-container,
-    .flex-child {
-        display: block;
-    }
-}
-
+/* Desktop spacing */
 @media (min-width: 1200px) {
 
     .flex-container {
