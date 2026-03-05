@@ -15,19 +15,19 @@ const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve static files from public folder
-app.use(express.static(path.join(__dirname, "public")));
-
-// Allow JSON in requests (keep this)
+// Middleware
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 app.use("/professional", contactsRoutes);
 
-// Connect to MongoDB
-await connectDB();
-
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+// Connect database
+connectDB()
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
