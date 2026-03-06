@@ -1,0 +1,32 @@
+### Get all contacts
+GET http://localhost:3000/contacts
+
+
+### Get single contact
+GET http://localhost:3000/contacts/69ab2fe628dea30cd312a069
+
+
+### Create a new contact
+POST http://localhost:3000/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Amelia",
+  "lastName": "Lind",
+  "email": "amelia.lind@email.com",
+  "favoriteColor": "pink",
+  "birthday": "2013-04-04"
+}
+
+
+### Update a contact
+PUT http://localhost:3000/contacts/69ab367f9132b77d0a01c80f
+Content-Type: application/json
+
+{
+  "favoriteColor": "Purple"
+}
+
+
+### Delete a contact
+DELETE http://localhost:3000/contacts/69ab34309132b77d0a01c80d

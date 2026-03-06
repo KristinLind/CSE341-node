@@ -30,14 +30,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// POST
+// POST new contact
 router.post("/", async (req, res) => {
   const db = await connectDB();
   const result = await db.collection("contacts").insertOne(req.body);
   res.status(201).json(result);
 });
 
-// PUT
+// PUT update contact
 router.put("/:id", async (req, res) => {
   const db = await connectDB();
 
@@ -57,7 +57,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE
+// DELETE contact
 router.delete("/:id", async (req, res) => {
   const db = await connectDB();
 

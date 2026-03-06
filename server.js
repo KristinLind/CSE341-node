@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
-app.use("/professional", contactsRoutes);
+app.use("/contacts", contactsRoutes);
 
 // Start server
 app.listen(PORT, "0.0.0.0", () => {
