@@ -15,7 +15,7 @@ fetch(`${window.location.origin}/professional`)
 
     if (desc) {
       desc.innerHTML = `
-        <p>${data.primaryDescription}</p>
+        <p><strong>${data.nameLink.firstName}</strong>${data.primaryDescription}</p>
         <p>${data.workDescription1}</p>
         <p>${data.workDescription2}</p>
         <p>
