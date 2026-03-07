@@ -14,14 +14,14 @@ fetch(`${window.location.origin}/professional`)
     }
 
     if (desc) {
-    desc.innerHTML = `
-    <p><strong>${contact.firstName}</strong> is a full-stack web development student who is currently learning backend API development with MongoDB.</p>
+      desc.innerHTML = `
+        <p><strong>${data.nameLink.firstName}</strong> is a full-stack web development student who is currently learning backend API development with MongoDB.</p>
 
-    <p class="links">
-      <a href="${contact.github}" target="_blank">GitHub</a> |
-      <a href="${contact.linkedin}" target="_blank">LinkedIn</a>
-    </p>
-    `;
+        <p class="links">
+          <a href="${data.githubLink.link}" target="_blank">GitHub</a> |
+          <a href="${data.linkedInLink.link}" target="_blank">LinkedIn</a>
+        </p>
+      `;
     }
 
   })
