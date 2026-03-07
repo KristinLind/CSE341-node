@@ -89,7 +89,8 @@ a:hover {
     gap: 50%;
     margin-top: 10px;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
 }
 
@@ -200,6 +201,8 @@ body {
     width: 280px;
     aspect-ratio: 1/1;
     max-width: 100%;
+    display: block;
+    margin: 0 auto;
     height: auto;
     object-fit: cover;
     border-radius: 50%;
