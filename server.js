@@ -31,9 +31,7 @@ const professionalData = {
     firstName: "Kristin",
     url: "https://kristinlind.github.io/"
   },
-  primaryDescription: " is a full-stack web development student.",
-  workDescription1: "She enjoys building modern web applications using JavaScript and Node.",
-  workDescription2: "She is currently learning backend API development with MongoDB.",
+  primaryDescription: " Kristin is a full-stack web development student who is currently learning backend API development with MongoDB.",
   linkTitleText: "Professional Links",
   linkedInLink: {
     text: "LinkedIn",

@@ -71,7 +71,7 @@ a {
     font-weight: 700;
     text-decoration: none;
     transition: 0.3s ease;
-    color: white;
+    color: var(--favorite);
 }
 
 a:hover {
@@ -156,7 +156,8 @@ body {
     padding: 35px;
     border-radius: 16px;
     width: 360px;
-    max-width: 90%;
+    max-width: 420px;
+    margin: 25px auto;
     box-sizing: border-box;
     text-align: left;
     margin-top: 10px;
