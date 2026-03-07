@@ -47,12 +47,17 @@ app.get("/professional", (req, res) => {
   res.json(professionalData);
 });
 
+// Connect database
+connectDB()
+  .then(() => {
+    console.log("MongoDB connected");
+
 // Start server
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-// Connect database
-connectDB()
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+    
+})
+  .catch ((err) => {
+  console.error("MongoDB connection error:", err);
+});
