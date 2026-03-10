@@ -32,7 +32,7 @@ const professionalData = {
     firstName: "Kristin",
     url: "https://kristinlind.github.io/"
   },
-  primaryDescription: " Kristin is a full-stack web development student who is currently learning backend API development with MongoDB.",
+  primaryDescription: " Kristin is a full-stack web development student who is currently learning backend API development with MongoDB. Her birthdate is April 2, 1969 and her favorite color is agua-green.",
   linkTitleText: "Professional Links",
   linkedInLink: {
     text: "LinkedIn",
