@@ -7,7 +7,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import contactsRoutes from "./routes/contacts.js";
-import { connectDB } from "./database.js";
+import { connectDB } from "./database/connection.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
