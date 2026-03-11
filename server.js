@@ -9,6 +9,12 @@ import { fileURLToPath } from "url";
 import contactsRoutes from "./routes/contacts.js";
 import { connectDB } from "./database/connection.js";
 
+import swaggerUi from "swagger-ui-express";
+import fs from "fs";
+
+const swaggerDocument = JSON.parse(
+  fs.readFileSync(new URL("./swagger.json", import.meta.url))
+);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -23,6 +29,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Routes
 app.use("/contacts", contactsRoutes);
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Professional API endpoint
 const professionalData = {
