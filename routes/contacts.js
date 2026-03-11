@@ -24,8 +24,9 @@ router.get("/:id", getSingleContact);
 /**
  * #swagger.tags = ['Contacts']
  * #swagger.summary = 'Create a new contact'
- * #swagger.parameters['obj'] = {
+ * #swagger.parameters['body'] = {
  *   in: 'body',
+ *   description: 'Contact object',
  *   required: true,
  *   schema: {
  *     firstName: "Kristin",
