@@ -7,6 +7,16 @@
   },
   "host": "cse341-node-r9gw.onrender.com",
   "basePath": "/",
+  "tags": [
+    {
+      "name": "Contacts",
+      "description": "Operations related to contacts"
+    },
+    {
+      "name": "Professional",
+      "description": "Professional profile information"
+    }
+  ],
   "schemes": [
     "https"
   ],
