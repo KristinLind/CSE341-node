@@ -7,6 +7,9 @@
   },
   "host": "cse341-node-r9gw.onrender.com",
   "basePath": "/",
+  "schemes": [
+    "https"
+  ],
   "tags": [
     {
       "name": "Contacts",
@@ -17,145 +20,77 @@
       "description": "Professional profile information"
     }
   ],
-  "schemes": [
-    "https"
-  ],
   "paths": {
     "/professional": {
       "get": {
-        "description": "",
+        "tags": ["Professional"],
+        "summary": "Get professional profile data",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Professional data returned successfully"
           }
         }
       }
     },
-    "/contacts/": {
+
+    "/contacts": {
       "get": {
-        "description": "",
+        "tags": ["Contacts"],
+        "summary": "Get all contacts",
         "responses": {
           "200": {
-            "description": "OK"
-          }
-        }
-      },
-    "post": {
-      "description": "Create a new contact",
-      "parameters": [
-        {
-          "in": "body",
-          "name": "body",
-          "description": "Contact object",
-          "required": true,
-          "schema": {
-            "type": "object",
-            "properties": {
-              "firstName": { "type": "string" },
-              "lastName": { "type": "string" },
-              "email": { "type": "string" },
-              "favoriteColor": { "type": "string" },
-              "birthday": { "type": "string" }
-            }
-          }
-        }
-    ],
-    "responses": {
-        "201": {
-            "description": "Created"
-          }
-        }
-      }
-    },
-    "/contacts/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
+            "description": "List of contacts returned"
           }
         }
       },
       "post": {
-        "description": "",
+        "tags": ["Contacts"],
+        "summary": "Create a new contact",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Contact object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "John"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Doe"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "john@email.com"
+                },
+                "favoriteColor": {
+                  "type": "string",
+                  "example": "Blue"
+                },
+                "birthday": {
+                  "type": "string",
+                  "example": "1990-01-01"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Contact created successfully"
           }
         }
       }
     },
-    "/{id}": {
+
+    "/contacts/{id}": {
       "get": {
-        "description": "",
+        "tags": ["Contacts"],
+        "summary": "Get a contact by ID",
         "parameters": [
           {
             "name": "id",
@@ -166,40 +101,66 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
+            "description": "Contact returned successfully"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Contact not found"
           }
         }
       },
+
       "put": {
-        "description": "",
+        "tags": ["Contacts"],
+        "summary": "Update a contact",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated contact data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "John"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Doe"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "john@email.com"
+                },
+                "favoriteColor": {
+                  "type": "string",
+                  "example": "Green"
+                },
+                "birthday": {
+                  "type": "string",
+                  "example": "1990-01-01"
+                }
+              }
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
+            "description": "Contact updated successfully"
           }
         }
       },
+
       "delete": {
-        "description": "",
+        "tags": ["Contacts"],
+        "summary": "Delete a contact",
         "parameters": [
           {
             "name": "id",
@@ -210,13 +171,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
+            "description": "Contact deleted successfully"
           }
         }
       }
