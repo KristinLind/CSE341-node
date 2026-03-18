@@ -30,3 +30,22 @@ Content-Type: application/json
 
 ### Delete a contact
 DELETE http://localhost:3000/contacts/69ab34309132b77d0a01c80d
+
+### Test invalid contact (validation)
+POST http://localhost:3000/contacts
+Content-Type: application/json
+
+{
+  "firstName": "",
+  "email": "not-an-email"
+}
+
+### Test valid contact
+POST http://localhost:3000/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Kristin",
+  "lastName": "Lind",
+  "email": "kristin@email.com"
+}

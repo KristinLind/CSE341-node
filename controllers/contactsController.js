@@ -1,27 +1,25 @@
-import { connectDB } from "../database/connection.js";
-import { ObjectId } from "mongodb";
+import Contact from "../models/contactModel.js";
 
 // GET all contacts
 export const getAllContacts = async (req, res) => {
-  const db = await connectDB();
-  const contacts = await db.collection("contacts").find().toArray();
-  res.json(contacts);
+  try {
+    const contacts = await Contact.find();
+    res.status(200).json(contacts);
+  } catch (err) {
+    res.status(500).json({ message: "Error retrieving contacts" });
+  }
 };
 
 // GET single contact
 export const getSingleContact = async (req, res) => {
-  const db = await connectDB();
-
   try {
-    const contact = await db.collection("contacts").findOne({
-      _id: new ObjectId(req.params.id)
-    });
+    const contact = await Contact.findById(req.params.id);
 
     if (!contact) {
       return res.status(404).json({ message: "Contact not found" });
     }
 
-    res.json(contact);
+    res.status(200).json(contact);
   } catch {
     res.status(400).json({ message: "Invalid ID format" });
   }
@@ -29,45 +27,45 @@ export const getSingleContact = async (req, res) => {
 
 // POST new contact
 export const createContact = async (req, res) => {
-  const db = await connectDB();
-  const result = await db.collection("contacts").insertOne(req.body);
-  res.status(201).json(result);
+  try {
+    const newContact = new Contact(req.body);
+    const savedContact = await newContact.save();
+
+    res.status(201).json(savedContact);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 };
 
 // PUT update contact
 export const updateContact = async (req, res) => {
-  const db = await connectDB();
-
   try {
-    const result = await db.collection("contacts").updateOne(
-      { _id: new ObjectId(req.params.id) },
-      { $set: req.body }
+    const updated = await Contact.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
     );
 
-    if (result.matchedCount === 0) {
+    if (!updated) {
       return res.status(404).json({ message: "Contact not found" });
     }
 
-    res.json({ message: "Contact updated" });
-  } catch {
-    res.status(400).json({ message: "Invalid ID format" });
+    res.status(200).json(updated);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 };
 
 // DELETE contact
 export const deleteContact = async (req, res) => {
-  const db = await connectDB();
-
   try {
-    const result = await db.collection("contacts").deleteOne({
-      _id: new ObjectId(req.params.id)
-    });
+    const deleted = await Contact.findByIdAndDelete(req.params.id);
 
-    if (result.deletedCount === 0) {
+    if (!deleted) {
       return res.status(404).json({ message: "Contact not found" });
     }
 
-    res.json({ message: "Contact deleted" });
+    res.status(200).json({ message: "Contact deleted" });
   } catch {
     res.status(400).json({ message: "Invalid ID format" });
   }

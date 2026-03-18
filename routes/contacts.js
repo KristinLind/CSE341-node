@@ -6,6 +6,10 @@ import {
   updateContact,
   deleteContact
 } from "../controllers/contactsController.js";
+import {
+  contactValidationRules,
+  validate
+} from "../middleware/validateContact.js";
 
 const router = express.Router();
 
@@ -37,14 +41,22 @@ router.get("/:id", getSingleContact);
  *   }
  * }
  */
-router.post("/", createContact);
-
+router.post(
+  "/",
+  contactValidationRules(),
+  validate,
+  createContact
+);
 /**
  * #swagger.tags = ['Contacts']
  * #swagger.summary = 'Update a contact'
  */
-router.put("/:id", updateContact);
-
+router.put(
+  "/:id",
+  contactValidationRules(),
+  validate,
+  updateContact
+);
 /**
  * #swagger.tags = ['Contacts']
  * #swagger.summary = 'Delete a contact'
